@@ -1,11 +1,11 @@
 # To avoid cascade failure in microservices when one service is down
 - Use resilience patterns so failures stay local instead of spreading
-    - Timeouts
+    - Timeouts - Never wait indefinitely for a downstream service
     - Circuit breaker
-    - Bulkheads
-    - Retries with backoff
-    - Fallback responses
-    - Load shedding
+    - Bulkheads - Isolation to contain failure
+    - Retries with backoff - Avoid retry storms, which can worsen the outage
+    - Fallback responses - Return a degraded but usable response
+    - Load shedding - When the system is under stress, reject excess traffic early
         1. Rate limiting - Reject requests above a threshold.
         2. Priority-based dropping - Keep important requests, drop less important ones.
         3. Queue limits - If the queue is full, reject new work.
